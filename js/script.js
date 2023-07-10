@@ -141,7 +141,7 @@ function checkDefeat(){
 
 function won(){
 	Telegram.WebApp.ready();
-	Telegram.WebApp.MainButton.setText('YOU WIN 点此退出').show().onClick(function () {
+	Telegram.WebApp.MainButton.setText(score).show().onClick(function () {
         
         Telegram.WebApp.sendData("win");
         Telegram.WebApp.close();
