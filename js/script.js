@@ -140,7 +140,14 @@ function checkDefeat(){
 }
 
 function won(){
+	Telegram.WebApp.ready();
+	Telegram.WebApp.MainButton.setText('Choose Color').show().onClick(function () {
+        const data = score;
+        Telegram.WebApp.sendData(data);
+        Telegram.WebApp.close();
+    });
   $(".won").css("visibility", "visible").css("padding-top", "0px").css("opacity", 1);
+  
 }
 
 function direction(e) {
@@ -202,7 +209,7 @@ function makeMove(x, y, dx, dy, i){
   updateTile(12 * newX, 12 * newY, newX, newY);
   $('.tile-' + x + '-' + y + '').remove();
   
-  if(newValue == 2048){
+  if(newValue == 64){
     won();
   }
 }
