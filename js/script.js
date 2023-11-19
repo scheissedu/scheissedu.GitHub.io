@@ -140,6 +140,7 @@ function checkDefeat(){
 }
 
 function won(){
+	TelegramGameProxy.shareScore()
 	Telegram.WebApp.ready();
 	Telegram.WebApp.MainButton.setText("胜利！点此退出").show().onClick(function () {
         
@@ -208,7 +209,7 @@ function makeMove(x, y, dx, dy, i){
   
   updateTile(12 * newX, 12 * newY, newX, newY);
   $('.tile-' + x + '-' + y + '').remove();
-  
+  TelegramGameProxy.shareScore(newValue)
   if(newValue == 64){
     won();
   }
