@@ -208,7 +208,6 @@ function makeMove(x, y, dx, dy, i){
   
   updateTile(12 * newX, 12 * newY, newX, newY);
   $('.tile-' + x + '-' + y + '').remove();
-  TelegramGameProxy.shareScore(newValue)
   if(newValue == 64){
     won();
   }
