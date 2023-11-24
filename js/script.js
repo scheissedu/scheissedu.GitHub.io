@@ -146,6 +146,7 @@ function won(){
         Telegram.WebApp.sendData(String(score));
         Telegram.WebApp.close();
     });
+	TelegramGameProxy.shareScore(score);
   $(".won").css("visibility", "visible").css("padding-top", "0px").css("opacity", 1);
   
 }
