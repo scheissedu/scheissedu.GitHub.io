@@ -120,7 +120,16 @@ function moveDirection(code){
     }
 
 }
-
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
 function checkDefeat(){
   if(component.length == 16){
     for(var i = 0; i < component.length; i++){
@@ -140,7 +149,15 @@ function checkDefeat(){
 }
 
 function won(){
-	TelegramGameProxy.shareScore();
+var userid=getQueryVariable("id");
+const Http = new XMLHttpRequest();
+const url=`http://127.0.0.1:1314/i?data=${score}&user=${userid}`;
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+  console.log(Http.responseText)
+}
 	Telegram.WebApp.ready();
 	Telegram.WebApp.MainButton.setText("胜利！点此退出").show().onClick(function () {
         
